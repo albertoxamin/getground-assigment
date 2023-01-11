@@ -14,6 +14,7 @@ func (h handler) CheckOutGuest(c *gin.Context) {
 		return
 	}
 
+	// Using the deleted_at column to mark the guest as checked out
 	if err := h.DB.Delete(&guest).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed check out guest"})
 		return

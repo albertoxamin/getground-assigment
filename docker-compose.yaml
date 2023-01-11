@@ -1,15 +1,15 @@
 version: '3.7'
 
 services:
-  app:
-    build:
-      context: . 
-      dockerfile: docker/deploy/Dockerfile
-    restart: unless-stopped
-    depends_on:
-      - mysql
-    ports:
-      - 3000:3000
+  # app:
+  #   build:
+  #     context: . 
+  #     dockerfile: docker/deploy/Dockerfile
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - mysql
+  #   ports:
+  #     - 3000:3000
 
   mysql:
     image: mysql:5.7

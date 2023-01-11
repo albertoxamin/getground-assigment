@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine
+FROM golang:1.17-alpine
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o bin/app cmd/app/main.go
+RUN go build -o bin/app cmd/main.go
 
 EXPOSE 3000
 
