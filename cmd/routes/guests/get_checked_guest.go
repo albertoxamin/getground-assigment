@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) GetCheckedGuestList(c *gin.Context) {
+func (h *handler) GetCheckedGuestList(c *gin.Context) {
 	var guests []models.Guest
 
 	if result := h.DB.Model(&models.Guest{}).Where("time_arrived <> ''").Find(&guests); result.Error != nil {

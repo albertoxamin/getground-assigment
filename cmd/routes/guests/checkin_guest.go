@@ -12,7 +12,7 @@ type CheckInRequestBody struct {
 	AccompanyingGuests int `json:"accompanying_guests"`
 }
 
-func (h handler) CheckInGuest(c *gin.Context) {
+func (h *handler) CheckInGuest(c *gin.Context) {
 	// Extract the request body as a Guest struct
 	var req = CheckInRequestBody{}
 	if err := c.ShouldBindJSON(&req); err != nil {

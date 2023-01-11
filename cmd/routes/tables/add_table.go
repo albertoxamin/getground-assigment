@@ -11,7 +11,7 @@ type AddTableRequestBody struct {
 	Capacity int `json:"capacity"`
 }
 
-func (h handler) AddTable(c *gin.Context) {
+func (h *handler) AddTable(c *gin.Context) {
 	body := AddTableRequestBody{}
 
 	// getting request's body

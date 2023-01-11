@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) CheckOutGuest(c *gin.Context) {
+func (h *handler) CheckOutGuest(c *gin.Context) {
 	var guest models.Guest
 	if err := h.DB.Model(&models.Guest{}).Where("`name` = ?", c.Param("name")).First(&guest).Error; err != nil {
 		c.AbortWithError(http.StatusNotFound, err)
