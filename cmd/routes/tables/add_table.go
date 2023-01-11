@@ -19,9 +19,13 @@ func (h handler) AddTable(c *gin.Context) {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
+	println(body.Capacity)
+	if body.Capacity < 1 {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "capacity must be greater than 0"})
+		return
+	}
 
 	var table models.Table
-
 	table.Capacity = body.Capacity
 
 	if result := h.DB.Create(&table); result.Error != nil {

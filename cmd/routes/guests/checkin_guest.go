@@ -20,6 +20,10 @@ func (h handler) CheckInGuest(c *gin.Context) {
 		return
 	}
 
+	if req.AccompanyingGuests < 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "accompanying_guests must be at least 0"})
+	}
+
 	// Fetch the table from the database
 	var table models.Table
 	if err := h.DB.Model(&models.Guest{}).Where("`name` = ?", c.Param("name")).Joins("JOIN tables as t on t.id=`guests`.table").Select("t.*").First(&table).Error; err != nil {
