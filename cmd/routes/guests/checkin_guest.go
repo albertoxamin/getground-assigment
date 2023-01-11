@@ -14,7 +14,7 @@ type CheckInRequestBody struct {
 
 func (h *handler) CheckInGuest(c *gin.Context) {
 	// Extract the request body as a Guest struct
-	var req = CheckInRequestBody{}
+	var req CheckInRequestBody
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

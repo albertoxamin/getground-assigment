@@ -14,7 +14,7 @@ type AddGuestRequestBody struct {
 
 func (h *handler) AddGuest(c *gin.Context) {
 	// Extract the request body as a Guest struct
-	var req = AddGuestRequestBody{}
+	var req AddGuestRequestBody
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
