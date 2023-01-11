@@ -3,12 +3,12 @@ package tables
 import (
 	"net/http"
 
-	"github.com/gin-gonic/gin"
 	"github.com/getground/tech-tasks/backend/cmd/common/models"
+	"github.com/gin-gonic/gin"
 )
 
 type AddTableRequestBody struct {
-	Capacity       string `json:"capacity"`
+	Capacity int `json:"capacity"`
 }
 
 func (h handler) AddTable(c *gin.Context) {

@@ -9,13 +9,14 @@ import (
 )
 
 func Init(url string) *gorm.DB {
-	db, err := gorm.Open(sql.Open(url)), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(url), &gorm.Config{})
 
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	// db.AutoMigrate(&models.Book{})
+	db.AutoMigrate(&models.Table{})
+	db.AutoMigrate(&models.Guest{})
 
 	return db
 }
