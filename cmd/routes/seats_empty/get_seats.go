@@ -7,14 +7,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) GetSeats(c *gin.Context) {
+func (h *handler) GetSeats(c *gin.Context) {
 	var guest_count int64
 	if err := h.DB.Raw("select ifnull(sum(accompanying_guests)+count(id), 0) from guests where deleted_at is NULL;").Row().Scan(&guest_count); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "problem counting guests"})
 		return
 	}
 	var seats_count int64
-	if err := h.DB.Model(&models.Table{}).Select("sum(capacity)").Row().Scan(&seats_count); err != nil {
+	if err := h.DB.Model(&models.Table{}).Select("ifnull(sum(capacity), 0)").Row().Scan(&seats_count); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "problem counting seats"})
 		return
 	}
