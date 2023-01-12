@@ -10,6 +10,9 @@ Once your db is up, you can start the app with `go run cmd/main.go`
 
 ## Project Overview
 
+In the current implementation, the logic is contained the cmd directory, in which the `main.go` file resides.
+The responsibilities of that file are to create the http server and register the different controllers that are implemented in the `routes` directory.
+
 ```
 cmd
 ├── common
@@ -21,6 +24,17 @@ cmd
     ├── seats_empty
     └── tables
 ```
+
+### Adding new endpoints
+
+1. Create a new folder under routes and create a `controller.go` file
+2. Create the implementation of the business logic in separate files in that folder
+3. register your endpoint inside `main.go`
+
+### Adding new Models
+
+1. Create a new file under the models directory
+2. Register your newly created model in `common/db/db.go`, in a similar format `db.AutoMigrate(&models.MyNewModel{})`
 
 ## Testing
 
