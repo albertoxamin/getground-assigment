@@ -1,4 +1,4 @@
-package guest_list
+package guestlist
 
 import (
 	"net/http"

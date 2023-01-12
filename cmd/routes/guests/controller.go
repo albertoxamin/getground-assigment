@@ -10,6 +10,7 @@ type handler struct {
 	DB *gorm.DB
 }
 
+// RegisterRoutes registers the routes for the guests controller.
 func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	h := &handler{
 		DB: db,

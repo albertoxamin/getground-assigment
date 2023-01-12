@@ -8,6 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Init initializes the database connection
 func Init(url string) *gorm.DB {
 	db, err := gorm.Open(mysql.Open(url), &gorm.Config{})
 

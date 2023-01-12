@@ -7,12 +7,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type AddTableRequestBody struct {
+type addTableRequestBody struct {
 	Capacity int `json:"capacity"`
 }
 
 func (h *handler) AddTable(c *gin.Context) {
-	body := AddTableRequestBody{}
+	var body addTableRequestBody
 
 	// getting request's body
 	if err := c.BindJSON(&body); err != nil {

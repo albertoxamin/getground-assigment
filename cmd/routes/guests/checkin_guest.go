@@ -8,13 +8,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type CheckInRequestBody struct {
+type checkInRequestBody struct {
 	AccompanyingGuests int `json:"accompanying_guests"`
 }
 
 func (h *handler) CheckInGuest(c *gin.Context) {
 	// Extract the request body as a Guest struct
-	var req CheckInRequestBody
+	var req checkInRequestBody
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

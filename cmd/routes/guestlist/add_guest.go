@@ -1,4 +1,4 @@
-package guest_list
+package guestlist
 
 import (
 	"net/http"
@@ -7,14 +7,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type AddGuestRequestBody struct {
+type addGuestRequestBody struct {
 	Table              int `json:"table"`
 	AccompanyingGuests int `json:"accompanying_guests"`
 }
 
 func (h *handler) AddGuest(c *gin.Context) {
 	// Extract the request body as a Guest struct
-	var req AddGuestRequestBody
+	var req addGuestRequestBody
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

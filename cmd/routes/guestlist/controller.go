@@ -1,4 +1,4 @@
-package seats_empty
+package guestlist
 
 import (
 	"github.com/gin-gonic/gin"
@@ -15,6 +15,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		DB: db,
 	}
 
-	routes := r.Group("/seats_empty")
-	routes.GET("/", h.GetSeats)
+	routes := r.Group("/guest_list")
+	routes.POST("/:name", h.AddGuest)
+	routes.GET("/", h.GetGuestList)
 }

@@ -1,4 +1,4 @@
-package guest_list
+package seatsempty
 
 import (
 	"github.com/gin-gonic/gin"
@@ -10,12 +10,12 @@ type handler struct {
 	DB *gorm.DB
 }
 
+// RegisterRoutes registers the routes for the seats_empty controller.
 func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	h := &handler{
 		DB: db,
 	}
 
-	routes := r.Group("/guest_list")
-	routes.POST("/:name", h.AddGuest)
-	routes.GET("/", h.GetGuestList)
+	routes := r.Group("/seats_empty")
+	routes.GET("/", h.GetSeats)
 }
