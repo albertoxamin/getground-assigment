@@ -1,5 +1,9 @@
 # GetGround End Year Party Service
 
+> Alberto Xamin 2023
+
+> Note please use the revised postman, as the ID are capitalized and some return statuses didn't match
+
 ## Development Setup
 
 To get you started, first of all start your development db instance.
@@ -10,8 +14,7 @@ Once your db is up, you can start the app with `go run cmd/main.go`
 
 ## Project Overview
 
-In the current implementation, the logic is contained the cmd directory, in which the `main.go` file resides.
-The responsibilities of that file are to create the http server and register the different controllers that are implemented in the `routes` directory.
+in the current implementation, the logic for starting the HTTP server and registering the controllers for handling different routes is contained in the `main.go` file located in the `cmd` directory. The `common` directory contains shared code that is used throughout the application, such as database connection management and data models. The routes directory contains individual controllers for each set of routes, such as the `guest_list` controller or the `tables` controller. This is a common way to organize a Go application and it makes the code more maintainable by keeping the main package clean, separating concerns, and allowing for easy modification and addition of new controllers.
 
 ```
 cmd
@@ -55,3 +58,98 @@ If you don't fancy ide help you can also execute the tests from the terminal, fo
 ```sh
 go test -timeout 30s -run ^TestAddGuest$ github.com/getground/tech-tasks/backend/cmd/routes/guest_list
 ```
+
+## Improvements
+
+First of all this current implementation was following the directions of the assignment, and in the definition it wasn't following a RESTful approach which could make the api grow more confusing as more endpoints are added.
+
+A proposal of a RESTful api that achieves the same functionality 
+
+A more RESTful design for the API could be:
+
+
+```
+POST /tables
+body: 
+{
+    "capacity": 10
+}
+response: 
+{
+    "id": 2,
+    "capacity": 10
+}
+```
+
+
+```
+POST /tables/{tableId}/guests
+body: 
+{
+    "name": "string",
+    "accompanying_guests": int
+}
+response: 
+{
+    "name": "string"
+}
+```
+
+
+```
+GET /tables/{tableId}/guests
+response: 
+{
+    "guests": [
+        {
+            "name": "string",
+            "accompanying_guests": int
+        }, ...
+    ]
+}
+```
+
+
+```
+PUT /tables/{tableId}/guests/{name}
+body:
+{
+    "accompanying_guests": int,
+    "time_arrived": "string"
+}
+response:
+{
+    "name": "string"
+}
+```
+
+
+```
+DELETE /tables/{tableId}/guests/{name}
+response code: 204
+```
+
+
+```
+GET /tables/{tableId}/guests/arrived
+response: 
+{
+    "guests": [
+        {
+            "name": "string",
+            "accompanying_guests": int,
+            "time_arrived": "string"
+        }
+    ]
+}
+```
+
+```
+GET /seats_empty
+response:
+{
+    "seats_empty": int
+}
+```
+
+This design follows RESTful principles, using proper HTTP methods, providing consistent and semantic URLs, and using proper HTTP status codes. Additionally, it makes use of resources like tables and guests, which can be identified by unique identifiers like tableId and name, and allows to actions such as add guests and updating guests.
