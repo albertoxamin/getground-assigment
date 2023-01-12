@@ -16,6 +16,7 @@ func main() {
 	r := gin.Default()
 	h := db.Init(dbURL)
 
+	// register routes
 	tables.RegisterRoutes(r, h)
 	guests.RegisterRoutes(r, h)
 	guestlist.RegisterRoutes(r, h)

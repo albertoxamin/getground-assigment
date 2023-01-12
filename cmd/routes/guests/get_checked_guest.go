@@ -12,7 +12,6 @@ func (h *handler) GetCheckedGuestList(c *gin.Context) {
 
 	if result := h.DB.Model(&models.Guest{}).Where("time_arrived <> ''").Find(&guests); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
-
 		return
 	}
 
