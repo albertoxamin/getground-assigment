@@ -4,6 +4,7 @@
 
 > Note please use the revised postman, as the ID are capitalized and some return statuses didn't match
 
+.
 ## Development Setup
 
 To get you started, first of all start your development db instance.
